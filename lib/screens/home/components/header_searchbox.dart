@@ -14,7 +14,7 @@ class HeaderSearchbox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(
-        bottom: defaultPadding  * 2.5,
+        bottom: defaultPadding  * 1.5,
       ),
       height: size.height * 0.2,
       child: Stack(
@@ -38,22 +38,20 @@ class HeaderSearchbox extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text(
                       'Hi, Wildan Pratama',
-                      style: TextStyle(
-                        color: Colors.white, 
+                      style: primaryTextStyle.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 22,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 3,
                     ),
                     Text(
                       'Welcome Back, Let\'s Save Our Planet!',
-                      style: TextStyle(
-                        color: Color(0xffECEDEF),
+                      style: primaryTextStyle.copyWith(
                         fontSize: 16,
                       ),
                     ),
@@ -91,9 +89,10 @@ class HeaderSearchbox extends StatelessWidget {
                   Expanded(
                     child: TextField(
                       onChanged: (value) {},
+                      style: primaryDarkTextStyle,
                       decoration: InputDecoration(
                         hintText: "Search",
-                        hintStyle: TextStyle(
+                        hintStyle: primaryTextStyle.copyWith(
                           color: primaryColor.withOpacity(0.5),
                         ),
                         enabledBorder: InputBorder.none,

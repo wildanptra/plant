@@ -32,9 +32,11 @@ class TitleMoreBtn extends StatelessWidget {
               ),
             ),
             onPressed: press,
-            child: const Text(
+            child: Text(
               "More",
-              style: TextStyle(color: Colors.white),
+              style: primaryTextStyle.copyWith(
+                fontWeight: FontWeight.bold
+              ),
             )
           )
         ]
@@ -64,8 +66,8 @@ class TitleWithCustomUnderline extends StatelessWidget {
             ),
             child: Text(
               text,
-              style: const TextStyle(
-                fontSize: 20,
+              style: primaryDarkTextStyle.copyWith(
+                fontSize: 17,
                 fontWeight: FontWeight.bold
               ),
             ),
@@ -78,7 +80,7 @@ class TitleWithCustomUnderline extends StatelessWidget {
               margin: const EdgeInsets.only(
                 right: defaultPadding / 4
               ),
-              height: 7,
+              height: 4,
               color: primaryColor.withOpacity(0.2),
             ),
           )

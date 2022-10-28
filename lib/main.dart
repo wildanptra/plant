@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:plant/screens/auth/login_screen.dart';
 import 'package:plant/screens/auth/register_screen.dart';
+import 'package:plant/screens/cart/cart_screen.dart';
 import 'package:plant/screens/home/home_screen.dart';
+import 'package:plant/screens/home/recommend_screen.dart';
+import 'package:plant/screens/main_screen.dart';
 import 'package:plant/screens/splash_screen.dart';
 
 import 'theme.dart';
@@ -27,9 +30,11 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/' : (context) => const SplashScreen(),
-        '/home' : (context) => const HomeScreen(),
         '/login' : (context) => const LoginScreen(), 
         '/register' : (context) => const RegisterScreen(), 
+        '/home' : (context) => const MainScreen(),
+        '/cart' : (context) => const CartScreen(),
+        '/recommend' : (context) => const RecommendScreen(),
       },
     );
   }

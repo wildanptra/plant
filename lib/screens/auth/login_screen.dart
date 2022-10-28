@@ -5,17 +5,26 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:plant/theme.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+
+  bool _obscureText = true;
+
+  @override
   Widget build(BuildContext context) {
+
 
     Size size  = MediaQuery.of(context).size;
 
     Widget header(){
       return Container(
-        height: size.height * 0.42,
+        height: size.height * 0.5,
         margin: const EdgeInsets.symmetric(
           horizontal: defaultPadding  * 2,
         ),
@@ -130,10 +139,22 @@ class LoginScreen extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         style: primaryDarkTextStyle,
-                        obscureText: true,
-                        decoration: const InputDecoration.collapsed(
+                        obscureText: _obscureText,
+                        decoration: InputDecoration(
                           hintText: 'Your Password',
                           hintStyle: TextStyle(color: primaryColor),
+                          border: InputBorder.none,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureText ? Icons.visibility : Icons.visibility_off,
+                              color: primaryColor,
+                            ),
+                            onPressed: (){
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
                         ),
                       ),
                     )
@@ -174,6 +195,9 @@ class LoginScreen extends StatelessWidget {
 
     Widget footer(){
       return Container(
+        margin: const EdgeInsets.only(
+          top: defaultPadding * 2
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -204,40 +228,41 @@ class LoginScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: primaryColor,
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Column(
+      body: ListView(
           children: [
             header(),
-            Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: backgroundColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
-                  ),
+            Container(
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: backgroundColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
                 ),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: defaultPadding * 2,
-                    vertical: defaultPadding * 2
-                  ),
-                  child: Column(
-                    children: [
-                      emailInput(),
-                      passwordInput(),
-                      signInButton(),
-                      const Spacer(),
-                      footer(),
-                    ],
-                  ),
+              ),
+              child: Container(
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(
+                  horizontal: defaultPadding * 2,
+                  vertical: defaultPadding * 2
+                ),
+                child: Column(
+                  children: [
+                    emailInput(),
+                    passwordInput(),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        signInButton(),
+                        footer(),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
           ],
-        )
-      ),
+        ),
     );
   }
 }

@@ -7,8 +7,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:plant/theme.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +25,7 @@ class RegisterScreen extends StatelessWidget {
 
     Widget header(){
       return Container(
-        height: size.height * 0.35,
+        height: size.height * 0.5,
         margin: const EdgeInsets.symmetric(
           horizontal: defaultPadding  * 2,
         ),
@@ -95,14 +103,14 @@ class RegisterScreen extends StatelessWidget {
       );
     }
 
-    Widget usernameInput() {
+    Widget fullnameInput() {
       return Container(
         margin: const EdgeInsets.only(bottom: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Username',
+              'Name',
               style: primaryDarkTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.bold
@@ -133,7 +141,7 @@ class RegisterScreen extends StatelessWidget {
                       child: TextFormField(
                         style: primaryDarkTextStyle,
                         decoration: const InputDecoration.collapsed(
-                          hintText: 'Your Username',
+                          hintText: 'Your Full Name',
                           hintStyle: TextStyle(color: primaryColor),
                         ),
                       ),
@@ -184,10 +192,22 @@ class RegisterScreen extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         style: primaryDarkTextStyle,
-                        obscureText: true,
-                        decoration: const InputDecoration.collapsed(
+                        obscureText: _obscureText,
+                        decoration: InputDecoration(
                           hintText: 'Your Password',
                           hintStyle: TextStyle(color: primaryColor),
+                          border: InputBorder.none,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureText ? Icons.visibility : Icons.visibility_off,
+                              color: primaryColor,
+                            ),
+                            onPressed: (){
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
                         ),
                       ),
                     )
@@ -228,6 +248,9 @@ class RegisterScreen extends StatelessWidget {
 
     Widget footer(){
       return Container(
+        margin: EdgeInsets.only(
+          top: defaultPadding * 2,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -258,41 +281,35 @@ class RegisterScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: primaryColor,
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Column(
-          children: [
-            header(),
-            Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: backgroundColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
-                  ),
+      body: ListView(
+        children: [
+          header(),
+          Container(
+              decoration: const BoxDecoration(
+                color: backgroundColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
                 ),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: defaultPadding * 2,
-                    vertical: defaultPadding * 2
-                  ),
-                  child: Column(
-                    children: [
-                      emailInput(),
-                      usernameInput(),
-                      passwordInput(),
-                      signInButton(),
-                      const Spacer(),
-                      footer(),
-                    ],
-                  ),
+              ),
+              child: Container(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: defaultPadding * 2,
+                  vertical: defaultPadding * 2
+                ),
+                child: Column(
+                  children: [
+                    fullnameInput(),
+                    emailInput(),
+                    passwordInput(),
+                    signInButton(),
+                    footer(),
+                  ],
                 ),
               ),
             ),
-          ],
-        )
-      ),
+        ],
+      )
     );
   }
 }

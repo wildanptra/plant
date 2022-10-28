@@ -31,10 +31,9 @@ class Body extends StatelessWidget {
                     )
                   ),
                   onPressed: (){},
-                  child: const Text(
+                  child: Text(
                     "Add To Cart",
-                    style: TextStyle(
-                      color: Colors.white,
+                    style: primaryTextStyle.copyWith(
                       fontSize: 16,
                     ),
                   ),
@@ -56,9 +55,9 @@ class Body extends StatelessWidget {
                       }
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     "Description",
-                    style: TextStyle(
+                    style: primaryTextStyle.copyWith(
                       color: primaryColor,
                       fontSize: 16,
                     ),

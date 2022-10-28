@@ -24,28 +24,36 @@ class TitleAndPrice extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text:  "$title\n",
-                  style: Theme.of(context).textTheme.headline4?.copyWith(
+                  text: "$title\n",
+                  style: primaryDarkTextStyle.copyWith(
+                    fontSize: 36,
                     color: textColor, 
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 TextSpan(
-                  text:  country,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    color: primaryColor,
+                  text:  "$country\n",
+                  style: primaryTextStyle.copyWith(
+                    fontSize: 16,
+                    color: const Color(0xffA6A6A6),
                     fontWeight: FontWeight.w300,
+                  ),
+                ),
+                TextSpan(
+                  text :"\$$price",
+                  style: primaryTextStyle.copyWith(
+                    color: primaryColor,
+                    fontSize: 24,
                   ),
                 ),
               ],
             ),
           ),
           const Spacer(),
-          Text(
-            "\$$price",
-            style: Theme.of(context).textTheme.headline5?.copyWith(
-              color: primaryColor,
+          GestureDetector(
+            onTap: (){},
+            child: Image.asset('assets/images/wishlist.png',
+              width: 55
             ),
           )
         ],

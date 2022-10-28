@@ -79,7 +79,7 @@ class ImageAndIcon extends StatelessWidget {
                     ),
                     icon: SvgPicture.asset('assets/icons/cart-dark.svg'),
                     onPressed: (){
-                      Navigator.pop(context);
+                      Navigator.pushNamed(context, '/cart');
                     },
                   ),
                 ],
